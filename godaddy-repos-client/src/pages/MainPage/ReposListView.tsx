@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { fetchRepoList } from '../../data/repoListDataProvider';
+import { fetchRepoList, RepoItem } from '../../data/repoListDataProvider';
 import { ListView, ColumnProps, Toast, LoadingSpinner } from '../../components';
 import { FontSize, FontWeight, Icons } from '../../assets';
 import { ListItem } from '../../components/ListView/listView.types';
+import { useNavigate } from 'react-router-dom';
+import { LanguageIcon } from '../../utils/dataParsingUtils';
 
 interface RepoListViewProps {
   styles?: React.CSSProperties;
@@ -12,20 +14,15 @@ const RepoListViewContainerStyles: React.CSSProperties = {
   padding: '10px 20px',
 };
 
-const languageIcon: { [key: string]: string } = {
-  JavaScript: Icons.javaScript,
-  Python: Icons.python,
-  Ruby: Icons.ruby,
-  PHP: Icons.php,
-  'Objective-C': Icons.objC,
-  'C#': Icons.csharp,
-  default: Icons.genericCode,
-};
-
 export const ReposListView: React.FC<RepoListViewProps> = ({ styles }) => {
   const [repoList, setRepoList] = useState<ListItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<any>(null);
+  const navigate = useNavigate();
+
+  const handleRepoListItemClick = (item: ListItem) => {
+    navigate(`/repoDetails/:${item.id}`, { state: { message: 'Back to all repositories', repo: item.data as RepoItem | undefined } });
+  };
 
   useEffect(() => {
     const fetchRepos = async () => {
@@ -66,7 +63,7 @@ export const ReposListView: React.FC<RepoListViewProps> = ({ styles }) => {
       filterable: true,
       render: (item) => (
         <img
-          src={languageIcon[item?.data?.language] ?? languageIcon['default'] }
+          src={LanguageIcon[item?.data?.language] ?? LanguageIcon['default'] }
           alt={item?.data?.language || 'code'}
           style={{ maxWidth: '20px', maxHeight: '20px' }} />
       ),
@@ -115,7 +112,7 @@ export const ReposListView: React.FC<RepoListViewProps> = ({ styles }) => {
       ) : (
         <div style={{ ...styles, ...RepoListViewContainerStyles }}>
           { error ? <Toast message={error}/> : (
-            <ListView items={repoList} columnProps={columnProps} />
+            <ListView items={repoList} columnProps={columnProps} onItemClick={handleRepoListItemClick}/>
           )}
         </div>
       )}

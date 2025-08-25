@@ -40,7 +40,7 @@ export const selectedRowStyle: React.CSSProperties = {
 
 export const headerRowStyle: React.CSSProperties = {
   position: 'sticky',
-  top: '90px',
+  top: '100px',
   zIndex: 1,
   backgroundColor: Colour.backgroundWhite,
   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.08)',

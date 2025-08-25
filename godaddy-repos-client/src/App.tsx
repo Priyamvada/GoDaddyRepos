@@ -1,6 +1,7 @@
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import MainPage from './pages/MainPage/MainPage';
 import './App.css';
+import RepoDetailsPage from './pages/RepoDetailsPage/RepoDetailsPage';
 
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/detail/:repoName" element={<div>Detail Page Placeholder</div>} />
+          <Route path="/repoDetails/:repoId" element={<RepoDetailsPage />} />
         </Routes>
       </Router>
     </div>

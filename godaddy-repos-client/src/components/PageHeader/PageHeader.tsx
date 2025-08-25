@@ -4,14 +4,19 @@ import { pageHeaderContainerStyles, pageHeaderSubtitleStyles, pageHeaderTitleSty
 interface PageHeaderProps {
   title: string;
   subtitle?: string;
-  className?: string;
-  styles?: React.CSSProperties;
+  onSubtitleClick?: () => void;
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({ title, subtitle, className, styles }) => (
-  <header className={className || 'page-header'} style={{ ...styles, ...pageHeaderContainerStyles }}>
+const PageHeader: React.FC<PageHeaderProps> = ({ title, subtitle, onSubtitleClick }) => (
+  <header className='page-header' style={pageHeaderContainerStyles}>
     <div style={{...pageHeaderTitleStyles}}>{title}</div>
-    {subtitle && <div style={{...pageHeaderSubtitleStyles}}>{subtitle}</div>}
+    {subtitle && (
+      <div
+      onClick={onSubtitleClick}
+      style={{...pageHeaderSubtitleStyles, ...(onSubtitleClick? {textDecoration: 'underline', cursor: 'pointer'} : {})}}>
+        {subtitle}
+      </div>
+    )}
   </header>
 );
 

@@ -7,6 +7,7 @@ export const ListView: React.FC<ListViewProps> = (props) => {
   const { items, columnProps, onItemClick } = props;
 
   const [selectedItem, setSelectedItem] = React.useState<ListItem | undefined>();
+  const [hoveredItem, setHoveredItem] = React.useState<ListItem | undefined>();
 
   return (
     <table style={listViewTableStyle}>
@@ -21,6 +22,12 @@ export const ListView: React.FC<ListViewProps> = (props) => {
         {items.map((item, idx) => (
           <tr
             key={item.id || idx}
+            onMouseOver={() => {
+              setHoveredItem(item);
+            }}
+            onMouseOut={() => {
+              setHoveredItem(undefined);
+            }}
             onClick={() => {
               if (selectedItem?.id === item.id) {
                 setSelectedItem(undefined);
@@ -29,7 +36,7 @@ export const ListView: React.FC<ListViewProps> = (props) => {
               setSelectedItem(item);
               onItemClick?.(item);
             }}
-            style={{ ...rowStyle, ...(selectedItem?.id === item.id ? selectedRowStyle : {}) }}
+            style={{ ...rowStyle, ...(selectedItem?.id === item.id || hoveredItem?.id === item.id ? selectedRowStyle : {}) }}
           >
             {columnProps.map((col) => {
               const cellContent = col.render?.(item) ?? (col.type === 'date' ? getFormattedDate(item.data?.[col.key]) : item.data?.[col.key]);
