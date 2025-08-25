@@ -1,9 +1,12 @@
 export interface ColumnProps {
   key: string;
   label: string;
-  type: 'text' | 'number' | 'date' | 'boolean';
+  placeholder?: string;
+  type: 'text' | 'number' | 'date' | 'boolean' | 'icon';
+  render?: (item?: ListItem) => React.ReactNode;
   sortable?: boolean;
   filterable?: boolean;
+  style?: React.CSSProperties;
 }
 
 export interface ListItem {

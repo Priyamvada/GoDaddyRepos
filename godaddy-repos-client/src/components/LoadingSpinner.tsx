@@ -1,5 +1,5 @@
 import React from 'react';
-import loadingSpinner from '../assets/loadingSpinner.gif';
+import { Icons } from '../assets';
 
 const spinnerStyle: React.CSSProperties = {
   display: 'flex',
@@ -10,6 +10,6 @@ const spinnerStyle: React.CSSProperties = {
 
 export const LoadingSpinner: React.FC = () => (
   <div style={spinnerStyle}>
-    <img src={loadingSpinner} alt="Loading..." />
+    <img src={Icons.loadingSpinner} alt="Loading..." />
   </div>
 );

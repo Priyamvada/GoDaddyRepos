@@ -1,17 +1,18 @@
 import * as React from 'react';
-import { ListViewProps } from './listView.types';
+import { ListItem, ListViewProps } from './listView.types';
+import { emptyCellStyle, headerRowStyle, listViewTableStyle, numberCellStyle, rowStyle, selectedRowStyle, tableCellStyle, tableHeaderStyle } from './listView.styles';
 
 export const ListView: React.FC<ListViewProps> = (props) => {
   const { items, columnProps, onItemClick } = props;
 
-  const [selectedItem, setSelectedItem] = React.useState<any>(null);
+  const [selectedItem, setSelectedItem] = React.useState<ListItem | undefined>();
 
   return (
-    <table>
+    <table style={listViewTableStyle}>
       <thead>
-        <tr>
+        <tr style={{...rowStyle, ...headerRowStyle}}>
           {columnProps.map((col) => (
-            <th key={col.key}>{col.label}</th>
+            <th key={col.key} style={{ ...tableHeaderStyle, ...col.style }}>{col.label}</th>
           ))}
         </tr>
       </thead>
@@ -20,26 +21,25 @@ export const ListView: React.FC<ListViewProps> = (props) => {
           <tr
             key={item.id || idx}
             onClick={() => {
+              if (selectedItem?.id === item.id) {
+                setSelectedItem(undefined);
+                return;
+              }
               setSelectedItem(item);
               onItemClick?.(item);
             }}
-            style={{
-              cursor: 'pointer',
-              background: selectedItem === item ? '#f0f0f0' : undefined,
-            }}
+            style={{ ...rowStyle, ...(selectedItem?.id === item.id ? selectedRowStyle : {}) }}
           >
-            {columnProps.map((col) => (
-              <td key={col.key}>{(item as any)[col.key] ?? ''}</td>
-            ))}
+            {columnProps.map((col) => {
+              const cellContent = col.render?.(item) ?? item.data?.[col.key];
+              let cellStyles = { ...tableCellStyle, ...col.style };
+              if (!cellContent) cellStyles = { ...cellStyles, ...emptyCellStyle };
+              if (col.type === 'number') cellStyles = { ...cellStyles, ...numberCellStyle };
+              return <td key={col.key} style={cellStyles}>{cellContent ?? col.placeholder ?? ''}</td>;
+            })}
           </tr>
         ))}
       </tbody>
     </table>
   );
 }
-/*
-For each row display: Repo name, description, language, forks, stars, last updated date, owner
-Actions:
-- On click launch detail panel
-- On detail panel provide option to view details in full page mode
-*/
