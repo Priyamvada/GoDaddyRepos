@@ -1,4 +1,3 @@
-import { isWhiteSpaceLike } from "typescript";
 import { Colour, FontSize } from "../../assets";
 
 export const repoDetailsPageContainerStyles: React.CSSProperties = {
