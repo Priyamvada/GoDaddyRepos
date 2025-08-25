@@ -1,14 +1,6 @@
 import * as React from 'react';
 import { ListViewProps } from './listView.types';
 
-const people = [
-  'Creola Katherine Johnson: mathematician',
-  'Mario José Molina-Pasquel Henríquez: chemist',
-  'Mohammad Abdus Salam: physicist',
-  'Percy Lavon Julian: chemist',
-  'Subrahmanyan Chandrasekhar: astrophysicist'
-];
-
 export const ListView: React.FC<ListViewProps> = (props) => {
   const { items, columnProps, onItemClick } = props;
 
