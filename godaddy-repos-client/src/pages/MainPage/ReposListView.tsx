@@ -102,6 +102,9 @@ export const ReposListView: React.FC<RepoListViewProps> = ({ styles }) => {
       label: 'Last Updated',
       type: 'date',
       sortable: true,
+      style: {
+        fontSize: FontSize.xsmall,
+      }
     },
   ];
 

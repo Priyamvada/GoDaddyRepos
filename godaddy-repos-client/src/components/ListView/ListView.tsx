@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ListItem, ListViewProps } from './listView.types';
 import { emptyCellStyle, headerRowStyle, listViewTableStyle, numberCellStyle, rowStyle, selectedRowStyle, tableCellStyle, tableHeaderStyle } from './listView.styles';
+import { getFormattedDate } from '../../utils/dateUtils';
 
 export const ListView: React.FC<ListViewProps> = (props) => {
   const { items, columnProps, onItemClick } = props;
@@ -31,7 +32,7 @@ export const ListView: React.FC<ListViewProps> = (props) => {
             style={{ ...rowStyle, ...(selectedItem?.id === item.id ? selectedRowStyle : {}) }}
           >
             {columnProps.map((col) => {
-              const cellContent = col.render?.(item) ?? item.data?.[col.key];
+              const cellContent = col.render?.(item) ?? (col.type === 'date' ? getFormattedDate(item.data?.[col.key]) : item.data?.[col.key]);
               let cellStyles = { ...tableCellStyle, ...col.style };
               if (!cellContent) cellStyles = { ...cellStyles, ...emptyCellStyle };
               if (col.type === 'number') cellStyles = { ...cellStyles, ...numberCellStyle };
