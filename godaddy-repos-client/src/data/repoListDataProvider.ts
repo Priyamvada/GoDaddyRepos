@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { snakeToCamel } from '../utils/dataParsingUtils';
 
-const GODADDY_GIRHUB_REPOS_URL = 'https://api.github.com/orgs/godaddddy/repos';
+const GODADDY_GIRHUB_REPOS_URL = 'https://api.github.com/orgs/godaddy/repos';
 const GODADDY_GITHUB_REPO_DETAILS_URL = 'https://api.github.com/repos/godaddy'
 
 export interface RepoLicense {
