@@ -8,7 +8,7 @@ export const Toast: React.FC<ToastProps> = ({
   onClose,
 }) => (
   <div style={{ ...baseStyle, ...toastStyles[type] }}>
-    <span>{message}</span>
+    {message}
     {onClose && (
       <button
         onClick={onClose}

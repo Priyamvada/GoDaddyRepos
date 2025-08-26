@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { snakeToCamel } from '../utils/dataParsingUtils';
 
-const GODADDY_GIRHUB_REPOS_URL = 'https://api.github.com/orgs/godaddy/repos';
+const GODADDY_GIRHUB_REPOS_URL = 'https://api.github.com/orgs/godaddddy/repos';
+const GODADDY_GITHUB_REPO_DETAILS_URL = 'https://api.github.com/repos/godaddy'
 
 export interface RepoLicense {
   key?: string;
@@ -166,6 +167,16 @@ export async function fetchRepoList(): Promise<RepoItem[]> {
     return response.data.map((repo: any): RepoItem => convertToRepoItem(repo));
   } catch (error) {
     console.error('Failed to fetch repo list:', error);
-    return [];
+    throw error;
+  }
+}
+
+export async function fetchRepoByName(repoName: string): Promise<RepoItem | null> {
+  try {
+    const response = await axios.get(`${GODADDY_GITHUB_REPO_DETAILS_URL}/${repoName}`);
+    return convertToRepoItem(response.data);
+  } catch (error) {
+    console.error(`Failed to fetch repo: ${repoName}:`, error);
+    throw error;
   }
 }

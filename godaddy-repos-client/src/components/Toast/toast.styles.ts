@@ -20,12 +20,13 @@ export const toastStyles: Record<ToastType, React.CSSProperties> = {
 };
 
 export const baseStyle: React.CSSProperties = {
+  textAlign: 'center',
   padding: '16px 24px',
   borderRadius: '4px',
   margin: '8px 0',
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'space-between',
+  justifyContent: 'center',
   minWidth: '250px',
   boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
   fontSize: '16px',

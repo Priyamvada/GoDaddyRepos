@@ -9,7 +9,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/repoDetails/:repoId" element={<RepoDetailsPage />} />
+          <Route path="/repoDetails/:repoName" element={<RepoDetailsPage />} />
         </Routes>
       </Router>
     </div>
