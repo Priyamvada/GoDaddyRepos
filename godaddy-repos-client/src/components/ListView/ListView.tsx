@@ -14,7 +14,7 @@ export const ListView: React.FC<ListViewProps> = (props) => {
       <thead>
         <tr style={{...rowStyle, ...headerRowStyle}}>
           {columnProps.map((col) => (
-            <th key={col.key} style={{ ...tableHeaderStyle, ...col.style }}>{col.label}</th>
+            <th key={col.key} style={{ ...tableHeaderStyle, ...col.headerStyle }}>{col.label}</th>
           ))}
         </tr>
       </thead>

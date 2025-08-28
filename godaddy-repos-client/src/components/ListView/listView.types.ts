@@ -7,6 +7,7 @@ export interface ColumnProps {
   sortable?: boolean;
   filterable?: boolean;
   style?: React.CSSProperties;
+  headerStyle?: React.CSSProperties;
 }
 
 export interface ListItem {
