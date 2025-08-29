@@ -98,11 +98,11 @@ const RepoDetailsPage: React.FC = () => {
           </div>
           <div style={repoDetailsRightPanelStyles}>
             <h3>URLs</h3>
-            <p>{repo.gitUrl && <a href={repo.gitUrl} target="_blank" rel="noopener noreferrer">Git URL</a>}</p>
-            <p>{repo.sshUrl && <a href={repo.sshUrl} target="_blank" rel="noopener noreferrer">SSH URL</a>}</p>
-            <p>{repo.cloneUrl && <a href={repo.cloneUrl} target="_blank" rel="noopener noreferrer">Clone URL</a>}</p>
-            <p>{repo.svnUrl && <a href={repo.svnUrl} target="_blank" rel="noopener noreferrer">SVN URL</a>}</p>
-            <p>{repo.homepage && <a href={repo.homepage} target="_blank" rel="noopener noreferrer">Homepage</a>}</p>
+            {repo.gitUrl && <p><strong>Git </strong> {repo.gitUrl}</p>}
+            {repo.sshUrl && <p><strong>SSH </strong> {repo.sshUrl}</p>}
+            {repo.cloneUrl && <p><strong>Clone </strong> {repo.cloneUrl}</p>}
+            {repo.svnUrl && <p><strong>SVN </strong> {repo.svnUrl}</p>}
+            {repo.homepage && <p><a href={repo.homepage} target="_blank" rel="noopener noreferrer">Homepage</a></p>}
             <br />
             <h3>Flags</h3>
             <p>Archived: {repo.archived ? '✔' : '❌'}</p>
