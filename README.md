@@ -1,6 +1,9 @@
 # GoDaddyRepos
 Displays details of public repos at GoDaddy
 
+## Demo
+https://github.com/user-attachments/assets/0f38a864-25bc-4158-b4e2-b3a72a2cf70e
+
 ## Installation
 ### Node environment
 - [Install node and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
