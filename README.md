@@ -96,11 +96,12 @@ npm test
 
 ### Aspects Skipped due to time constraints
 1. Search box, sorting and filtering logic in the list view
-2. Better error messages displayed in case of failure
-3. Adoption of redux or react context for storing API response of the master API
-4. Writing more detailed test cases at the individual widget component level
-5. Using flex columns and rows instead of HTML `<table></table>` for the `ListView`. This provides greater precision and control over aspects such as column widths, virtualization, etc
-6. Virtualization of master list of repos. If reponse size of API is too large, absence of virtualization will make the DOM significantly slower
-7. More consolidated styling with better style constant names
-8. Better rules followed while defining styles
-9. Non hacky method for keeping header row of table floating
+2. More strict and thorough WCAG accessibility guideline adherance
+3. Better error messages displayed in case of failure
+4. Adoption of redux or react context for storing API response of the master API
+5. Writing more detailed test cases at the individual widget component level
+6. Using flex columns and rows instead of HTML `<table></table>` for the `ListView`. This provides greater precision and control over aspects such as column widths, virtualization, etc
+7. Virtualization of master list of repos. If reponse size of API is too large, absence of virtualization will make the DOM significantly slower
+8. More consolidated styling with better style constant names
+9. Better rules followed while defining styles
+10. Non hacky method for keeping header row of table floating
